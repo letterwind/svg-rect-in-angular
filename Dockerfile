@@ -20,13 +20,16 @@ RUN /bin/zsh /home/node/.zshrc
 
 RUN mkdir /home/node/app && chown node:node /home/node/app
 RUN mkdir /home/node/app/node_modules && chown node:node /home/node/app/node_modules
+USER root
+RUN chown node:node /usr/local/lib/node_modules
 WORKDIR /home/node/app
-# USER node
-RUN cd .. && npm init -y
-#  && npm i -g @angular/cli
-# COPY --chown=node:node package.json package-lock.json ./
+RUN npm init -y && npm i -g @angular/cli
+
 # RUN npm ci --quite
 COPY --chown=node:node . .
+USER node
+# RUN cd .. && ng new app --strict=true
+# COPY --chown=node:node package.json package-lock.json ./
 # COPY --chown=node:node zsh-in-docker.sh ./
 # USER root
 # RUN /home/node/app/zsh-in-docker.sh \

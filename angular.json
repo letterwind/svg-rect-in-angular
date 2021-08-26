@@ -31,9 +31,12 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/libs/svg.select.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              
+            ]
           },
           "configurations": {
             "production": {
